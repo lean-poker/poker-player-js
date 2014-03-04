@@ -13,10 +13,13 @@ app.post('/', function(req, res){
   if(req.body.action == 'bet_request'){
     res.send(200, player.bet_request(req.body.game_state).toString());
   }
-  if(req.body.action == 'showdown'){
+  else if(req.body.action == 'showdown'){
     player.showdown(req.body.game_state);
     res.send(200, 'OK');
+  } else {
+    res.send(200, 'OK')
   }
+
 });
 
 port = 1337;
