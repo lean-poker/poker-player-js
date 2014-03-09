@@ -10,12 +10,13 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-  if(req.body.action == 'bet_request'){
+  if(req.body.action == 'bet_request') {
     res.send(200, player.bet_request(req.body.game_state).toString());
-  }
-  else if(req.body.action == 'showdown'){
+  } else if(req.body.action == 'showdown') {
     player.showdown(req.body.game_state);
     res.send(200, 'OK');
+  } else if(req.body.action == 'version') {
+    res.send(200, player.VERSION);
   } else {
     res.send(200, 'OK')
   }
