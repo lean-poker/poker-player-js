@@ -24,5 +24,6 @@ app.post('/', function(req, res){
 });
 
 port = 1337;
-app.listen(port);
-console.log('Listening at http://localhost:' + port)
+host = "0.0.0.0";
+app.listen(port, host);
+console.log('Listening at http://' + host + ':' + port)
