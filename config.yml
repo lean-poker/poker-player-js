@@ -1,1 +1,4 @@
 url: http://localhost:1337/
+port: 1337
+path: /
+dependencies: 
