@@ -23,7 +23,7 @@ app.post('/', function(req, res){
 
 });
 
-port = 1337;
+port = parseInt(process.env['PORT'] || 1337);
 host = "0.0.0.0";
 app.listen(port, host);
 console.log('Listening at http://' + host + ':' + port)
