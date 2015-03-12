@@ -1,0 +1,1 @@
+web: node player_service.js
