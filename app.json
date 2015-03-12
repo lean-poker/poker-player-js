@@ -1,0 +1,7 @@
+{
+  "name": "Node.js Poker Player",
+  "description": "Javascript client skeleton for Lean Poker",
+  "repository": "https://github.com/lean-poker/poker-player-js",
+  "website": "http://leanpoker.org/",
+  "keywords": ["node", "lean", "poker"]
+}
