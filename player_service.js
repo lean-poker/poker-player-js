@@ -11,7 +11,9 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   if(req.body.action == 'bet_request') {
-    res.send(200, player.bet_request(JSON.parse(req.body.game_state)).toString());
+    player.bet_request(JSON.parse(req.body.game_state),function(bet) {
+      res.send(200, bet.toString());
+    });
   } else if(req.body.action == 'showdown') {
     player.showdown(JSON.parse(req.body.game_state));
     res.send(200, 'OK');
