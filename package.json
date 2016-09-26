@@ -9,5 +9,15 @@
   "dependencies": {
     "express": "4.x",
     "body-parser": "1.15.2"
+  },
+  "devDependencies": {
+    "chai": "3.x",
+    "mocha": "3.x"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
