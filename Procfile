@@ -1,1 +1,1 @@
-web: node player_service.js
+web: node server.js
