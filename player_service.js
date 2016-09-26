@@ -1,32 +1,42 @@
-var player = require('./player');
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const http = require('http');
+
+// create express app
+const app = express();
+// port
+const port = parseInt((process.env.PORT || 1337), 10);
+// create player
+const Player = require('./Player');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req, res){
-  res.send(200, 'OK')
-});
+app.post('/', (req, res) => {
+  const { action, game_state } = req.body;
+  // game_state need to parsed, because it is sent via from-urlencoded
+  const parsedGameState = JSON.parse(game_state);
 
-app.post('/', function(req, res){
-  if(req.body.action == 'bet_request') {
-    player.bet_request(JSON.parse(req.body.game_state),function(bet) {
-      res.send(200, bet.toString());
-    });
-  } else if(req.body.action == 'showdown') {
-    player.showdown(JSON.parse(req.body.game_state));
-    res.send(200, 'OK');
-  } else if(req.body.action == 'version') {
-    res.send(200, player.VERSION);
-  } else {
-    res.send(200, 'OK')
+  switch (action) {
+    case 'version':
+      res.json(Player.getVersion());
+      break;
+    case 'bet_request':
+      res.json(Player.betRequest(parsedGameState));
+      break;
+    case 'showdown':
+      Player.showdown(parsedGameState);
+      res.send('Ok');
+      break;
+    case 'check':
+      res.send('Ok');
+      break;
+    default:
+      res.send('Unknown action');
   }
-
 });
 
-port = parseInt(process.env['PORT'] || 1337);
-host = "0.0.0.0";
-app.listen(port, host);
-console.log('Listening at http://' + host + ':' + port)
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log(`Server listening at: localhost:${port}`);
+});

@@ -1,13 +1,18 @@
+const PLAYER_VERSION = '0.1';
 
-module.exports = {
-
-  VERSION: "Default JavaScript folding player",
-
-  bet_request: function(game_state, bet) {
-    bet(0);
-  },
-
-  showdown: function(game_state) {
-
+class Player {
+  static getVersion() {
+    return PLAYER_VERSION;
   }
-};
+
+  static betRequest(gameState) {
+    // implement bet request logic here
+    return 0;
+  }
+
+  static showdown(gameState) {
+    // implement showdown logic here
+  }
+}
+
+module.exports = Player;
