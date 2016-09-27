@@ -1,8 +1,6 @@
-const PLAYER_VERSION = '0.1';
-
 class Player {
-  static getVersion() {
-    return PLAYER_VERSION;
+  static get VERSION() {
+    return '0.1';
   }
 
   static betRequest(gameState) {
