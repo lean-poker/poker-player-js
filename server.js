@@ -14,7 +14,7 @@ app.post('/', (req, res) => {
 
   switch (action) {
     case 'version':
-      res.send(Player.getVersion());
+      res.send(Player.VERSION);
       break;
     case 'bet_request':
       res.json(Player.betRequest(JSON.parse(game_state)));
