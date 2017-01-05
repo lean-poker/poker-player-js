@@ -3,8 +3,8 @@ class Player {
     return '0.1';
   }
 
-  static betRequest(gameState) {
-    return 0;
+  static betRequest(gameState, bet) {
+    bet(0);
   }
 
   static showdown(gameState) {
