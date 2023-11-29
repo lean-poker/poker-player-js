@@ -1,13 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const http = require('http');
 
 const app = express();
 const port = parseInt((process.env.PORT || 1337), 10);
 const Player = require('./Player');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.post('/', (req, res) => {
   const { action, game_state } = req.body;
