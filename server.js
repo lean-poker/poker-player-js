@@ -9,19 +9,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/', (req, res) => {
-  const { action, game_state } = req.body;
+  const { action, game, game_state: gameState } = req.body;
 
   switch (action) {
     case 'version':
       res.send(Player.VERSION);
       break;
     case 'bet_request':
-      Player.betRequest(JSON.parse(game_state), function(bet) {
-        res.json(bet);
-      });
+      try {
+        Player.betRequest(JSON.parse(gameState), (blob) => res.json(blob), game);
+      } catch (e) {
+        console.log(e);
+        res.json({});
+      }
       break;
     case 'showdown':
-      Player.showdown(JSON.parse(game_state));
+      try {
+        Player.showdown(JSON.parse(gameState));
+      } catch (e) {
+        console.log(e);
+      }
       res.send('Ok');
       break;
     case 'check':
